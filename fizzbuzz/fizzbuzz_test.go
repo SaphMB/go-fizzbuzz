@@ -165,7 +165,7 @@ func TestRespond(t *testing.T) {
 }
 
 func BenchmarkRespondSlowly(b *testing.B) {
-	b.Run("when the input is not a multiple of 3 or 5", func(b *testing.B) {
+	b.Run("Respond slowly", func(b *testing.B) {
 		for _, num := range []int{1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 30} {
 			fizzbuzz.RespondSlowly(num)
 		}
