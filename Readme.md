@@ -12,5 +12,5 @@ The FizzBuzz program takes a list of numbers and returns output based on the fol
 ## Benchmarking
 
 ```shell
-go test -bench=BenchmarkRespond -v ../...
+go test -bench=Respond -v ../...
 ```

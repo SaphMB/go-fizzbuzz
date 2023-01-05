@@ -165,17 +165,39 @@ func TestRespond(t *testing.T) {
 }
 
 func BenchmarkRespondSlowly(b *testing.B) {
-	b.Run("Respond slowly", func(b *testing.B) {
-		for _, num := range []int{1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 30} {
-			fizzbuzz.RespondSlowly(num)
-		}
-	})
+	for n := 0; n < b.N; n++ {
+		fizzbuzz.RespondSlowly(15)
+	}
 }
 
-func BenchmarkRespond(t *testing.B) {
-	t.Run("Respond", func(b *testing.B) {
-		for _, num := range []int{1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 30} {
-			fizzbuzz.Respond(num)
-		}
-	})
+func BenchmarkRespond(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		fizzbuzz.Respond(15)
+	}
 }
+
+func benchmarkRespond(i int, b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		fizzbuzz.Respond(i)
+	}
+}
+
+func benchmarkRespondSlowly(i int, b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		fizzbuzz.RespondSlowly(i)
+	}
+}
+
+func BenchmarkRespond1(b *testing.B)  { benchmarkRespond(1, b) }
+func BenchmarkRespond3(b *testing.B)  { benchmarkRespond(3, b) }
+func BenchmarkRespond5(b *testing.B)  { benchmarkRespond(5, b) }
+func BenchmarkRespond10(b *testing.B) { benchmarkRespond(10, b) }
+func BenchmarkRespond15(b *testing.B) { benchmarkRespond(15, b) }
+func BenchmarkRespond30(b *testing.B) { benchmarkRespond(30, b) }
+
+func BenchmarkRespondSlowly1(b *testing.B)  { benchmarkRespondSlowly(1, b) }
+func BenchmarkRespondSlowly3(b *testing.B)  { benchmarkRespondSlowly(3, b) }
+func BenchmarkRespondSlowly5(b *testing.B)  { benchmarkRespondSlowly(5, b) }
+func BenchmarkRespondSlowly10(b *testing.B) { benchmarkRespondSlowly(10, b) }
+func BenchmarkRespondSlowly15(b *testing.B) { benchmarkRespondSlowly(15, b) }
+func BenchmarkRespondSlowly30(b *testing.B) { benchmarkRespondSlowly(30, b) }
