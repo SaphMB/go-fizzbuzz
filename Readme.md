@@ -14,3 +14,9 @@ The FizzBuzz program takes a list of numbers and returns output based on the fol
 ```shell
 go test -bench=Respond -v ../...
 ```
+
+## Fuzz testing
+
+```shell
+go test --fuzz=FuzzRespondSlowly -v
+```

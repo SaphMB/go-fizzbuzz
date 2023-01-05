@@ -201,3 +201,24 @@ func BenchmarkRespondSlowly5(b *testing.B)  { benchmarkRespondSlowly(5, b) }
 func BenchmarkRespondSlowly10(b *testing.B) { benchmarkRespondSlowly(10, b) }
 func BenchmarkRespondSlowly15(b *testing.B) { benchmarkRespondSlowly(15, b) }
 func BenchmarkRespondSlowly30(b *testing.B) { benchmarkRespondSlowly(30, b) }
+
+func FuzzRespond(f *testing.F) {
+	f.Add(2)
+	f.Fuzz(func(t *testing.T, input int) {
+		response := fizzbuzz.Respond(input)
+		if response == "" {
+			t.Fail()
+		}
+	})
+}
+
+func FuzzRespondSlowly(f *testing.F) {
+	f.Add(2)
+	f.Fuzz(func(t *testing.T, input int) {
+		response := fizzbuzz.RespondSlowly(input)
+		if response == "" {
+			t.Logf("failed running against input: %d", input)
+			t.Fail()
+		}
+	})
+}
