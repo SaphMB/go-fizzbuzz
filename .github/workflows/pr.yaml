@@ -8,4 +8,4 @@ jobs:
     uses:
       SaphMB/cicd-test/.github/workflows/config.yaml@main
     with:
-      ref: ${{ github.event.pull_request.head.sha }}
+      sha: ${{ github.event.pull_request.head.sha }}
