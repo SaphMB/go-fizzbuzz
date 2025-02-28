@@ -1,0 +1,11 @@
+name: PR Test
+
+on:
+  pull_request:
+
+jobs:
+  reuse_test:
+    uses:
+      SaphMB/cicd-test/.github/workflows/config.yaml@main
+    with:
+      ref: ${{ github.event.pull_request.head.sha }}
